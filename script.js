@@ -17,31 +17,38 @@ const cardData = [
     }
 ];
 
-function expandCard(index) {
-    document.getElementById("modal-title").innerText = cardData[index].title;
-    document.getElementById("modal-text").innerText = cardData[index].text;
-    document.getElementById("modal").style.display = "flex";
-}
-
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
+let lastViewedCard = null;
 
 function expandCard(index) {
+    let card = document.getElementsByClassName("card")[index];
+
+    // Si la tarjeta ya fue vista, evitar que se vuelva a abrir
+    if (card.classList.contains("viewed")) return;
+
     let text = cardData[index].text;
 
-    // Evitar que el punto en "S.A." genere un salto de línea
     text = text.replace(/S\.A\./g, "SA_TEMP");
-
-    // Agregar un salto de línea después de cada punto que NO sea parte de "S.A."
     text = text.replace(/\.\s+/g, ".<br><br>");
-
-    // Restaurar "S.A." a su formato original
     text = text.replace(/SA_TEMP/g, "S.A.");
 
     document.getElementById("modal-title").innerText = cardData[index].title;
     document.getElementById("modal-text").innerHTML = text;
     document.getElementById("modal").style.display = "flex";
+
+    lastViewedCard = card;
 }
 
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
 
+    if (lastViewedCard) {
+        lastViewedCard.classList.add("viewed");
+    }
+}
+
+// Restaurar tarjeta al hacer clic cuando tiene la "X"
+document.addEventListener("click", function(event) {
+    if (event.target.classList.contains("viewed")) {
+        event.target.classList.remove("viewed");
+    }
+});
