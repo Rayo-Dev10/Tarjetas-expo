@@ -27,6 +27,7 @@ body {
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     animation: bounce 1.5s infinite alternate ease-in-out;
+    position: relative;
 }
 
 .card:hover {
@@ -37,6 +38,31 @@ body {
 @keyframes bounce {
     0% { transform: translateY(0); }
     100% { transform: translateY(-10px); }
+}
+
+/* Tarjeta después de ser vista */
+.card.viewed {
+    filter: blur(4px);
+    position: relative;
+}
+
+/* Check verde cuando la tarjeta ya fue vista */
+.card.viewed::after {
+    content: "✔";
+    font-size: 50px;
+    color: green;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: color 0.3s ease;
+}
+
+/* Cambiar el check a una "X" naranja al hacer hover */
+.card.viewed:hover::after {
+    content: "✖";
+    color: orange;
 }
 
 /* MODAL */
