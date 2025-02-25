@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjetas Interactivas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card" onclick="expandCard(0)">
+            <h2>Constitución de la Sociedad Anónima</h2>
+            <p>La constitución de una sociedad anónima en Colombia es un proceso formal...</p>
+        </div>
+        <div class="card" onclick="expandCard(1)">
+            <h2>Socios y Número de Socios</h2>
+            <p>Las sociedades anónimas en Colombia tienen reglas claras sobre el número mínimo y máximo de socios...</p>
+        </div>
+        <div class="card" onclick="expandCard(2)">
+            <h2>Capital para Constituirse</h2>
+            <p>A diferencia de otros tipos de sociedades, las S.A. no tienen un capital mínimo fijo establecido por ley...</p>
+        </div>
+        <div class="card" onclick="expandCard(3)">
+            <h2>Causales de Disolución y Liquidación</h2>
+            <p>La disolución de una sociedad anónima puede ocurrir por diversas razones...</p>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-text"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
